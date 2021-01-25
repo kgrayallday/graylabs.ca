@@ -1,10 +1,18 @@
-@media only screen and (max-width:750px){
+@media only screen and (min-width:750px){
     html, body{
         padding:0;
         margin:0;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    a{
+        text-decoration: none;
+        color:black;
+        font-size: 1.5em;
     }
 
     .main-container{
+        height:min-content;
         display:flex;
         align-items: center;
         justify-content: center;
@@ -12,7 +20,7 @@
     }
 
     .main-header{
-        padding:20px;
+        padding:10px;
         text-align: center;
     }
 
@@ -27,6 +35,48 @@
         padding-left: 5px;
         padding-right: 5px;
 
+    }
+
+    .header-container{
+        width:100%;
+        border-bottom-style: solid;
+        border-color: lightgray;
+        border-width: 0.5px;
+    }
+
+    .body-div{
+        height:min-content;
+        width: 80%;
+        max-width:1200px;
+        /* background-color: rgb(240, 240, 240); */
+
+    }
+
+    .card{
+        padding:2.5%;
+        margin:5%;
+        border-style: solid;
+        border-color: lightgray;
+        border-width: 0.5px;
+        border-radius: 10px;
+        overflow-x: hidden;
+        box-shadow: 5px 5px 8px lightgray;
+    }
+
+    .footer-div{
+
+        height:300px;
+        width:100%;
+        background-color: lightgray;
+    }
+
+    .contact-icons{
+        width:30px;
+        fill:black;
+    }
+
+    .footer-div{
+        text-align: center;
     }
 
 }
