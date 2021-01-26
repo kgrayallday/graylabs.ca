@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bartender</title>
+<link rel="stylesheet" type="text/css" href="bartender.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<script>
+  var arrayOfLines = $('#vininput').val().split('\n');
+  var 
+function serveBarcodes(){
+    
+}
+</script>
+
+</head>
+
+<body>
+<h1 class="logo">🍺Bartender</h1>
+<h3 class="logodesc">Barcode Generator</h3>
+<p> Enter your VIN below:</p>
+<textarea id="vininput" rows="8" cols="50">
+</textarea>
+<button id="cheersbutton">Cheers🍻</button>
+<p>
+<?php
+require 'vendor/autoload.php';
+// This will output the barcode as HTML output to display in the browser
+$generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+
+echo "<div id='barresults'>".  $generator->getBarcode('BARTENDER', $generator::TYPE_CODE_128). "
+</div>" ;
+
+?>
+</p>
+
+</body>
+
+
+</html>
