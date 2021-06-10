@@ -21,8 +21,6 @@
 
 
 <body>
-<!--<h1 class="logo">🍺Bartender</h1>
-<h3 class="logodesc">Barcode Generator</h3>-->
 
 <div class="imglogo">
 	<div class="bumpers"></div>
@@ -49,6 +47,7 @@
 <?php
 require 'vendor/autoload.php';
 
+//TODO: if vinlist is empty output "you need to enter something, anything!"
 $vinlist = $_POST['vininput'];
 $vins = explode(PHP_EOL, $vinlist);   
 $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
