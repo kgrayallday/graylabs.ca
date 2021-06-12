@@ -14,11 +14,29 @@
 		document.body.innerHTML = printContents;
 		window.print();
 		document.body.innerHTML = originalContents;
-	}
+    }
+
+    function shotMode(){
+        //hide all divs by class "vinDiv" but make div$i visable
+        var vindivs = document.getElementsByClassName('vinDiv');
+        var i;
+        for (i=0;i<vindivs.length;i++){
+            vindivs[i].style.display="none";
+        } 
+        vindivs[0].style.display="block";
+    }
+
+    function prevShot(){
+        //decrement visible div by -1
+    }
+
+    function nextShot(){
+        // incriment visible div by 1
+    }
+
 </script>
 
 </head>
-
 
 <body>
 
@@ -55,12 +73,16 @@ $vinslength = count($vins);
 
   for($i=0;$i<count($vins);$i++){
         $vin = trim($vins[$i],"\r");
-	echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($vin, $generator::TYPE_CODE_128)) . '">';
+	echo '<div class="vinDiv" id=div'.$i.'><img src="data:image/png;base64,' . base64_encode($generator->getBarcode($vin, $generator::TYPE_CODE_128)) . '">';
         echo '<br><br>';
         echo $vin;
-        echo '<br><br>';
+        echo '<br><br></div>';
 }
 ?>
+<button type='button' onclick="shotMode()">Shots</button>
+<button onclick="prevShot()">Prev</button>
+<button onclick="nextShot()">Next</button>
+<br><br>
 <button onclick="printDiv('barcodes')">Print</button>
 </body>
 
