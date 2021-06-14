@@ -6,14 +6,22 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 
-<script>
-	function printDiv(divName){
-		var printContents = document.getElementById(divName).innerHTML;
-		var originalContents = document.body.innerHTML;
+<script type="text/javascript">
+var currentVisible = null;
 
-		document.body.innerHTML = printContents;
-		window.print();
-		document.body.innerHTML = originalContents;
+    function printDiv(divName){
+        var printContents = document.getElementById(divName).innerHTML;
+        var oldPage = document.body.innerHTML;
+
+        document.body.innerHTML =
+            "<html><body>" + printContents + "</body></html>";
+
+        window.print();
+
+       document.body.innerHTML = oldPage; 
+        //document.body.innerHTML = printContents;
+		//window.print();
+		//document.body.innerHTML = originalContents;
     }
 
     function shotMode(){
@@ -24,14 +32,33 @@
             vindivs[i].style.display="none";
         } 
         vindivs[0].style.display="block";
+        currentVisible = 0;
     }
 
     function prevShot(){
         //decrement visible div by -1
+        if(currentVisible === 0 || currentVisible === null){
+        }else{
+            document.getElementById('div' + currentVisible).style.display="none";
+            document.getElementById('div' + (currentVisible -1)).style.display="block";
+            console.log('div' + (currentVisible -1) + ' updated');
+            currentVisible--;
+        }
     }
 
     function nextShot(){
         // incriment visible div by 1
+        var vindivs  = document.getElementsByClassName('vinDiv');
+        console.log(vindivs.length + ' vins long');
+        if(currentVisible === vindivs.length -1 || currentVisible === null){
+        // Do Nothing
+        }else{
+            document.getElementById('div' + currentVisible).style.display="none";
+            console.log('div' + currentVisible + ' set to display none');
+            document.getElementById('div' + (currentVisible + 1)).style.display="block";
+            console.log('div' + (currentVisible +1) + ' now visible');
+            currentVisible++;
+        }
     }
 
 </script>
@@ -57,11 +84,7 @@
 <input type="submit" id="cheersbutton" value="Cheers🍻">
 <form>
 
-
-</p>
-<p id="barcodes">
-
-
+<br><br>
 <?php
 require 'vendor/autoload.php';
 
@@ -70,6 +93,7 @@ $vinlist = $_POST['vininput'];
 $vins = explode(PHP_EOL, $vinlist);   
 $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 $vinslength = count($vins);
+echo '<div id="barcodes">';
 
   for($i=0;$i<count($vins);$i++){
         $vin = trim($vins[$i],"\r");
@@ -77,13 +101,16 @@ $vinslength = count($vins);
         echo '<br><br>';
         echo $vin;
         echo '<br><br></div>';
-}
+  }
+
+echo '</div>';
 ?>
+
 <button type='button' onclick="shotMode()">Shots</button>
-<button onclick="prevShot()">Prev</button>
-<button onclick="nextShot()">Next</button>
+<button type='button' onclick="prevShot()">Prev</button>
+<button type='button' onclick="nextShot()">Next</button>
 <br><br>
-<button onclick="printDiv('barcodes')">Print</button>
+<button type='button' onclick="printDiv('barcodes')">Print</button>
 </body>
 
 
