@@ -19,9 +19,6 @@ var currentVisible = null;
         window.print();
 
        document.body.innerHTML = oldPage; 
-        //document.body.innerHTML = printContents;
-		//window.print();
-		//document.body.innerHTML = originalContents;
     }
 
     function shotMode(){
@@ -105,12 +102,13 @@ echo '<div id="barcodes">';
 
 echo '</div>';
 ?>
-
+<div class="buttonsDiv">
 <button type='button' onclick="shotMode()">Shots</button>
 <button type='button' onclick="prevShot()">Prev</button>
 <button type='button' onclick="nextShot()">Next</button>
 <br><br>
 <button type='button' onclick="printDiv('barcodes')">Print</button>
+</div>
 </body>
 
 

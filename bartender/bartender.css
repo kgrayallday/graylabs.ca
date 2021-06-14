@@ -86,9 +86,11 @@ p{
   margin-bottom:40px;
 }
 
-.barcodes{
-  align-items:center;
+#barcodes{
+    text-align:center;
 }
 
-
+.buttonsDiv{
+    text-align:center;
+}
 
